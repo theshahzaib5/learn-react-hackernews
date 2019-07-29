@@ -1,10 +1,12 @@
 import React from 'react';
 import './App.css';
 
+const helloWorld = "it's my first app";
+
 function App() {
   return (
     <div>
-      <h1>it's my first app</h1>
+      <h1>{helloWorld}</h1>
     </div>
   );
 }
