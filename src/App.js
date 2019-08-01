@@ -21,6 +21,7 @@ const list = [
     objectID: 1,
   },
 ];
+const array = [ 1, 4, 9, 16 ];
 
 export default class App extends Component {
   constructor (props){
@@ -69,6 +70,13 @@ export default class App extends Component {
                 </a>
               </div>
             )
+          })}
+        </div>
+        
+        <div style={{marginBottom: 30}}>
+          {/* multiplied array by 2 */}
+          { array.map(function(x, i){ 
+            return (<span key={i} style={{marginRight: 10}}>{x * 2}</span>)
           })}
         </div>
       </div>
