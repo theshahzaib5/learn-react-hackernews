@@ -14,6 +14,8 @@ ReactDOM.render(
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
 
-if (module.hot) {
-  module.hot.accept();
-}
+// to load browser without refreshing it
+
+// if (module.hot) {
+//   module.hot.accept();
+// }

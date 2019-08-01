@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import './App.css';
 
 const helloWorld = "it's my first app";
@@ -43,6 +43,10 @@ export default class App extends Component {
     this.setState({timer: new Date().toLocaleTimeString()})
   }
 
+  componentWillUnmount() {
+    clearTimeout(this.updateTime);
+  }
+
   render() {
     const {
       state: {
@@ -62,7 +66,7 @@ export default class App extends Component {
           { list.map(function(item) {
             return (
               <div key={item.objectID} style={{ marginBottom: 20, flex: 1 }}>
-                <a href={item.url} style={{color: "#000", textDecoration: "none", display: "inline-block"}}>
+                <a href={item.url} style={{color: "#764abc", textDecoration: "none", display: "inline-block"}}>
                   <p><strong>Project Name:</strong> {item.title}</p>
                   <p><strong>Author:</strong> {item.author}</p>
                   <p><strong>Comments:</strong> {item.num_comments}</p>
