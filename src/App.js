@@ -63,7 +63,7 @@ export default class App extends Component {
 
         <div style={{display: "flex"}}>
           {/* printing an array with objects */}
-          { list.map(function(item) {
+          { list.map((item) => {
             return (
               <div key={item.objectID} style={{ marginBottom: 20, flex: 1 }}>
                 <a href={item.url} style={{color: "#764abc", textDecoration: "none", display: "inline-block"}}>
@@ -79,7 +79,7 @@ export default class App extends Component {
         
         <div style={{marginBottom: 30}}>
           {/* multiplied array by 2 */}
-          { array.map(function(x, i){ 
+          { array.map((x, i) => { 
             return (<span key={i} style={{marginRight: 10}}>{x * 2}</span>)
           })}
         </div>
