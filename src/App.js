@@ -20,6 +20,22 @@ const list = [
     points: 5,
     objectID: 1,
   },
+  {
+    title: 'Bootstrap',
+    url: 'https://getbootstrap.com/',
+    author: 'Mark Otto, Jacob Thornton',
+    num_comments: 5,
+    points: 5,
+    objectID: 2,
+  },
+  {
+    title: 'Angular',
+    url: 'https://angular.io/',
+    author: 'Google',
+    num_comments: 5,
+    points: 5,
+    objectID: 3,
+  },
 ];
 const array = [ 1, 4, 9, 16 ];
 
@@ -30,6 +46,7 @@ export default class App extends Component {
     this.state = {
       // setting current time
       timer: new Date().toLocaleTimeString(),
+      list: list
     }
   }
 
@@ -47,11 +64,24 @@ export default class App extends Component {
     clearTimeout(this.updateTime);
   }
 
+  onDismiss = (id) => {
+    const {
+      state: {
+        list
+      }
+    } = this
+    
+    const updatedList = list.filter(item => item.objectID !== id);
+    this.setState({ list: updatedList });
+  }
+
   render() {
     const {
       state: {
         timer,
-      }
+        list
+      },
+      onDismiss,
     } = this
     
     return (
@@ -61,16 +91,24 @@ export default class App extends Component {
         <h2>User designation: {user.designation}</h2>
         <h2>Current time is: {timer}</h2>
 
-        <div style={{display: "flex"}}>
+        <div style={{display: "flex", paddingTop: 20}}>
           {/* printing an array with objects */}
           { list.map((item) => 
-            <div key={item.objectID} style={{ marginBottom: 20, flex: 1 }}>
+            <div key={item.objectID} style={{ color: "#000", marginBottom: 20, flex: 1 }}>
               <a href={item.url} style={{color: "#764abc", textDecoration: "none", display: "inline-block"}}>
-                <p><strong>Project Name:</strong> {item.title}</p>
-                <p><strong>Author:</strong> {item.author}</p>
-                <p><strong>Comments:</strong> {item.num_comments}</p>
-                <p><strong>Points:</strong> {item.points}</p>
+                <p style={{margin: 0}}><strong>Project Name:</strong> {item.title} </p>
               </a>
+              <p><strong>Author:</strong> {item.author} </p>
+              <p><strong>Comments:</strong> {item.num_comments} </p>
+              <p><strong>Points:</strong> {item.points}</p>
+              <p>
+                <button
+                  onClick={() => onDismiss(item.objectID)}
+                  type="button"
+                >
+                  Dismiss
+                </button>
+              </p>
             </div>
           )}
         </div>
