@@ -63,25 +63,23 @@ export default class App extends Component {
 
         <div style={{display: "flex"}}>
           {/* printing an array with objects */}
-          { list.map((item) => {
-            return (
-              <div key={item.objectID} style={{ marginBottom: 20, flex: 1 }}>
-                <a href={item.url} style={{color: "#764abc", textDecoration: "none", display: "inline-block"}}>
-                  <p><strong>Project Name:</strong> {item.title}</p>
-                  <p><strong>Author:</strong> {item.author}</p>
-                  <p><strong>Comments:</strong> {item.num_comments}</p>
-                  <p><strong>Points:</strong> {item.points}</p>
-                </a>
-              </div>
-            )
-          })}
+          { list.map((item) => 
+            <div key={item.objectID} style={{ marginBottom: 20, flex: 1 }}>
+              <a href={item.url} style={{color: "#764abc", textDecoration: "none", display: "inline-block"}}>
+                <p><strong>Project Name:</strong> {item.title}</p>
+                <p><strong>Author:</strong> {item.author}</p>
+                <p><strong>Comments:</strong> {item.num_comments}</p>
+                <p><strong>Points:</strong> {item.points}</p>
+              </a>
+            </div>
+          )}
         </div>
         
         <div style={{marginBottom: 30}}>
           {/* multiplied array by 2 */}
-          { array.map((x, i) => { 
-            return (<span key={i} style={{marginRight: 10}}>{x * 2}</span>)
-          })}
+          { array.map((x, i) =>
+            <span key={i} style={{marginRight: 10}}>{x * 2}</span>
+          )}
         </div>
       </div>
     );
