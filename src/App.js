@@ -46,7 +46,8 @@ export default class App extends Component {
     this.state = {
       // setting current time
       timer: new Date().toLocaleTimeString(),
-      list: list
+      list: list,
+      searchTerm: "",
     }
   }
 
@@ -75,13 +76,24 @@ export default class App extends Component {
     this.setState({ list: updatedList });
   }
 
+  onSearchChange = (event) => {
+    this.setState({ searchTerm: event.target.value }); 
+  }
+
+  getFilteredArray = list => {
+    const {searchTerm} = this.state
+    return list.filter(item => item.title.toLowerCase().includes(searchTerm.toLowerCase()))
+  }
+
   render() {
     const {
       state: {
         timer,
-        list
+        list,
       },
       onDismiss,
+      onSearchChange,
+      getFilteredArray,
     } = this
     
     return (
@@ -118,6 +130,37 @@ export default class App extends Component {
           { array.map((x, i) =>
             <span key={i} style={{marginRight: 10}}>{x * 2}</span>
           )}
+        </div>
+
+        <div style={{marginBottom: 30}}>
+          <h1>Search form</h1>
+          <form>
+            <input
+              type="text"
+              onChange={onSearchChange}
+            />
+
+            <div style={{display: "flex", paddingTop: 20}}>
+              { getFilteredArray(list).map((item) => 
+                <div key={item.objectID} style={{ color: "#000", marginBottom: 20, flex: 1 }}>
+                  <a href={item.url} style={{color: "#764abc", textDecoration: "none", display: "inline-block"}}>
+                    <p style={{margin: 0}}><strong>Project Name:</strong> {item.title} </p>
+                  </a>
+                  <p><strong>Author:</strong> {item.author} </p>
+                  <p><strong>Comments:</strong> {item.num_comments} </p>
+                  <p><strong>Points:</strong> {item.points}</p>
+                  <p>
+                    <button
+                      onClick={() => onDismiss(item.objectID)}
+                      type="button"
+                    >
+                      Dismiss
+                    </button>
+                  </p>
+                </div>
+              )}
+            </div>
+          </form>
         </div>
       </div>
     );
