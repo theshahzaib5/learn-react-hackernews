@@ -89,6 +89,7 @@ export default class App extends Component {
     const {
       state: {
         timer,
+        searchTerm,
         list,
       },
       onDismiss,
@@ -137,6 +138,7 @@ export default class App extends Component {
           <form>
             <input
               type="text"
+              value={searchTerm}
               onChange={onSearchChange}
             />
 
